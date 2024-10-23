@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Collections;
 
-
 /**
  * Controller class for managing the grid of cells in the SIR model.
  * <p>
@@ -39,6 +38,7 @@ public class Grid {
      * @param rows the number of rows in the grid
      * @param cols the number of columns in the grid
      * @param virusTransmissionRate the transmission rate of the virus
+     * @param recoveryRate the recovery rate of the virus
      */
     public Grid(int rows, int cols, double virusTransmissionRate, double recoveryRate) {
         this.rows = rows;
@@ -87,7 +87,7 @@ public class Grid {
      * @param percentInfected the percentage of cells to initialize as infected
      */
     public void initialize(double percentInfected) {
-        int numInfected_ = (int) (rows * cols * (percentInfected/100));
+        int numInfected_ = (int) (rows * cols * (percentInfected / 100));
         initialize(numInfected_);
     }
 
@@ -99,7 +99,6 @@ public class Grid {
         cells[rows / 2][cols / 2] = new SIRCell(State.INFECTIOUS);
         numInfected = 1;
         initializeGrid();
-
     }
 
     /**
@@ -113,7 +112,7 @@ public class Grid {
                     cells[row][col] = new SIRCell(State.SUSCEPTIBLE);
                     numSusceptible++;
                 } else {
-                    cells[row][col] = (SIRCell)(cells[row][col]);
+                    cells[row][col] = (SIRCell) (cells[row][col]);
                 }
             }
         }
@@ -130,6 +129,7 @@ public class Grid {
      *
      * @param row the row index of the cell
      * @param col the column index of the cell
+     * @return a list of neighboring cells
      */
     private List<SIRCell> createNeighbors(int row, int col) {
         SIRCell cell = cells[row][col];
@@ -139,7 +139,7 @@ public class Grid {
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
 
-                if (row == 0 && col == 0) {                                  //top left corner
+                if (row == 0 && col == 0) { // top left corner
                     if (r == 2 && c == 1) {
                         cell.addNeighbor((SIRCell) cells[row + 1][col]);
                     } else if (r == 1 && c == 2) {
@@ -147,7 +147,7 @@ public class Grid {
                     } else if (r == 2 && c == 2) {
                         cell.addNeighbor(cells[row + 1][col + 1]);
                     }
-                } else if (row == 0 && col < cols-1) {                         //top row
+                } else if (row == 0 && col < cols - 1) { // top row
                     switch (c) {
                         case 0 -> {
                             if (r == 1) {
@@ -169,7 +169,7 @@ public class Grid {
                             }
                         }
                     }
-                } else if (row == 0 && col == cols-1) {                         //top right corner
+                } else if (row == 0 && col == cols - 1) { // top right corner
                     if (r == 1 && c == 0) {
                         cell.addNeighbor(cells[row][col - 1]);
                     } else if (r == 2 && c == 0) {
@@ -177,7 +177,7 @@ public class Grid {
                     } else if (r == 2 && c == 1) {
                         cell.addNeighbor(cells[row + 1][col]);
                     }
-                } else if (row > 0 && row < rows-1 && col == cols-1) {                      //right column
+                } else if (row > 0 && row < rows - 1 && col == cols - 1) { // right column
                     if (c == 0) {
                         switch (r) {
                             case 0 ->
@@ -194,7 +194,7 @@ public class Grid {
                             cell.addNeighbor(cells[row + 1][col]);
                         }
                     }
-                } else if (row < rows-1 && col == 0) {                          //left column
+                } else if (row < rows - 1 && col == 0) { // left column
                     if (c == 1) {
                         if (r == 0) {
                             cell.addNeighbor(cells[row - 1][col]);
@@ -211,7 +211,7 @@ public class Grid {
                                 cell.addNeighbor(cells[row + 1][col + 1]);
                         }
                     }
-                } else if (row == rows -1 && col == 0) {                       //bottom left corner
+                } else if (row == rows - 1 && col == 0) { // bottom left corner
                     if (c == 1 && r == 0) {
                         cell.addNeighbor(cells[row - 1][col]);
                     } else if (c == 2 && r == 0) {
@@ -219,7 +219,7 @@ public class Grid {
                     } else if (c == 2 && r == 1) {
                         cell.addNeighbor(cells[row][col + 1]);
                     }
-                } else if (row == rows-1 && col < cols-1) {                     //bottom row
+                } else if (row == rows - 1 && col < cols - 1) { // bottom row
                     if (c == 0) {
                         switch (r) {
                             case 0 ->
@@ -237,7 +237,7 @@ public class Grid {
                                 cell.addNeighbor(cells[row][col + 1]);
                         }
                     }
-                } else if (row == (rows -1) && col == (cols -1)) {                    //bottom right corner
+                } else if (row == (rows - 1) && col == (cols - 1)) { // bottom right corner
                     if (c == 0) {
                         switch (r) {
                             case 0 ->
@@ -248,7 +248,7 @@ public class Grid {
                     } else if (c == 1 && r == 0) {
                         cell.addNeighbor(cells[row - 1][col]);
                     }
-                } else {                                                    //middle cells
+                } else { // middle cells
                     switch (r) {
                         case 0 ->
                             cell.addNeighbor(cells[row - 1][col - 1]);
@@ -267,7 +267,7 @@ public class Grid {
     }
 
     /**
-     * Updates the state of the grid by calculating the next state for each cell and then updating their states. 
+     * Updates the state of the grid by calculating the next state for each cell and then updating their states.
      */
     public void updateGrid() {
         numInfected = 0;
@@ -278,7 +278,7 @@ public class Grid {
             for (int j = 0; j < cols; j++) {
                 cells[i][j].updateState();
                 switch (cells[i][j].getState()) {
-                    case INFECTIOUS-> {
+                    case INFECTIOUS -> {
                         numInfected++;
                     }
                     case RECOVERED -> {
@@ -290,11 +290,11 @@ public class Grid {
                 }
 
                 cells[i][j].updateNextState(virusTransmissionRate, recoveryRate);
-                
-                // Verifica si el siguiente estado de alguna célula es INFECTIOUS
+
+                // Check if the next state of any cell is INFECTIOUS
                 if (cells[i][j].getNextState() == State.INFECTIOUS) {
                     hasInfected = true;
-                } 
+                }
             }
         }
         updateCounter++;

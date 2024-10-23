@@ -15,7 +15,7 @@ import java.util.Random;
  * @see State
  * @since 1.0
  */
-public final class SIRCell implements Cell{
+public final class SIRCell implements Cell {
     private static final Random random = new Random();
     
     private State currentState;
@@ -24,13 +24,12 @@ public final class SIRCell implements Cell{
     private double virusTransmissionRate, recoveryRate;
     private int infectiousNeighbors = 0;
 
-
     /**
      * Constructs a SIRCell with the specified initial state.
      * 
      * @param state the initial state of the cell
      */
-    public SIRCell(State state){
+    public SIRCell(State state) {
         this.currentState = state;
         this.nextState = updateNextState(virusTransmissionRate, recoveryRate);
     }
@@ -47,6 +46,11 @@ public final class SIRCell implements Cell{
         }
     }
 
+    /**
+     * Sets the neighbors of this cell.
+     * 
+     * @param newNeighbors the new neighbors to set
+     */
     public void setNeighbors(List<SIRCell> newNeighbors) {
         List<SIRCell> copiedNeighbors = new ArrayList<>(newNeighbors);
     
@@ -54,6 +58,11 @@ public final class SIRCell implements Cell{
         this.neighbors.addAll(copiedNeighbors);
     }
 
+    /**
+     * Gets the neighbors of this cell.
+     * 
+     * @return the list of neighboring cells
+     */
     public List<SIRCell> getNeighbors() {
         return neighbors;
     }
@@ -88,9 +97,11 @@ public final class SIRCell implements Cell{
     }
 
     /**
-     * Calculates the next state based on the current state, neighbors, and virus transmission rate, and updates the next state.
+     * Calculates the next state based on the current state, neighbors, virus transmission rate, and recovery rate.
      * 
      * @param virusTransmissionRate the transmission rate of the virus
+     * @param recoveryRate the recovery rate from the virus
+     * @return the next state of the cell
      */
     @Override
     public State updateNextState(double virusTransmissionRate, double recoveryRate) {
@@ -98,7 +109,7 @@ public final class SIRCell implements Cell{
         this.recoveryRate = recoveryRate;
         this.infectiousNeighbors = 0;
         for (Cell neighbor : getNeighbors()) {
-            if ((State) neighbor.getState() == (State.INFECTIOUS)) {
+            if (neighbor.getState() == State.INFECTIOUS) {
                 infectiousNeighbors++;
             }
         }

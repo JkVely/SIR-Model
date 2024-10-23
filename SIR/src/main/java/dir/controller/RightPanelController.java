@@ -10,6 +10,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 
+/**
+ * Controller class for the right panel of the SIR model application.
+ * Manages user inputs and interactions for configuring the simulation parameters.
+ */
 public class RightPanelController {
 
     @FXML
@@ -50,17 +54,18 @@ public class RightPanelController {
     private GridController gridController;
     private ChartController chartController;
 
+    /**
+     * Initializes the controller class. This method is automatically called
+     * after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
-        // Bind the labels to the slider values
         transmissionRateLabel.textProperty().bind(transmissionRateSlider.valueProperty().asString("%.0f%%"));
         recoveryRateLabel.textProperty().bind(recoveryRateSlider.valueProperty().asString("%.0f%%"));
 
-        // Initialize the timeline for automatic animation
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> step()));
         timeline.setCycleCount(Timeline.INDEFINITE);
 
-        // Set up listeners for radio buttons
         centerInfectionRadio.setOnAction(e -> {
             percentageField.setDisable(true);
             numberField.setDisable(true);
@@ -77,19 +82,35 @@ public class RightPanelController {
         });
     }
 
+    /**
+     * Sets the GridController instance.
+     *
+     * @param gridController the GridController to set
+     */
     public void setGridController(GridController gridController) {
         this.gridController = gridController;
     }
 
+    /**
+     * Sets the ChartController instance.
+     *
+     * @param chartController the ChartController to set
+     */
     public void setChartController(ChartController chartController) {
         this.chartController = chartController;
     }
 
+    /**
+     * Handles the action of stepping through the simulation manually.
+     */
     @FXML
     private void handleStepAction() {
         step();
     }
 
+    /**
+     * Handles the action of starting the automatic simulation.
+     */
     @FXML
     private void handleStartAutoAction() {
         if (grid.hasInfected()) {
@@ -102,13 +123,18 @@ public class RightPanelController {
         }
     }
 
+    /**
+     * Handles the action of stopping the automatic simulation.
+     */
     @FXML
     private void handleStopAutoAction() {
         timeline.stop();
     }
 
+    /**
+     * Performs a single step in the simulation.
+     */
     private void step() {
-        // Update the grid model
         if (grid.hasInfected()) {
             gridController.updateGrid();
         } else {
@@ -117,11 +143,12 @@ public class RightPanelController {
             System.out.println("Total number of steps: " + grid.getUpdateCounter());
             timeline.stop();
         }
-
-        // Update the chart
         updateChart();
     }
 
+    /**
+     * Handles the action of initializing the grid with user-defined parameters.
+     */
     @FXML
     private void handleInitializeGrid() {
         grid = null;
@@ -139,10 +166,8 @@ public class RightPanelController {
             System.out.println("Invalid grid size. Using default 10x10.");
         }
 
-        // Create and initialize the grid model
         grid = new Grid(rows, cols, transmissionRate, recoveryRate);
 
-        // Initialize the grid based on the selected infection type
         if (centerInfectionRadio.isSelected()) {
             grid.initialize();
         } else if (percentageInfectionRadio.isSelected()) {
@@ -166,17 +191,20 @@ public class RightPanelController {
             grid.initialize();
         }
 
-        // Set the grid in the GridController
         gridController.setGrid(grid);
-
-        // Initialize the chart with initial grid data
         initializeChart();
     }
 
+    /**
+     * Initializes the chart with the initial grid data.
+     */
     private void initializeChart() {
         chartController.updateChart(grid.getNumSusceptible(), grid.getNumInfected(), grid.getNumRecovered());
     }
 
+    /**
+     * Updates the chart with the current grid data.
+     */
     private void updateChart() {
         chartController.updateChart(grid.getNumSusceptible(), grid.getNumInfected(), grid.getNumRecovered());
     }

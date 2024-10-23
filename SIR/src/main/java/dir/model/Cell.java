@@ -54,10 +54,11 @@ public interface Cell {
     void updateState();
 
     /**
-     * Calculates the next state based on the current state, neighbors, and virus transmission rate, and updates the next state.
+     * Calculates the next state based on the current state, neighbors, virus transmission rate, and recovery rate, and updates the next state.
      * 
      * @param virusTransmissionRate the transmission rate of the virus
      * @param recoveryRate the recovery rate of the virus
+     * @return the next state of the cell
      */
     State updateNextState(double virusTransmissionRate, double recoveryRate);
 }
