@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="628.0" spacing="10" stylesheets="@styles/chart.css"
+    xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="dir.controller.ChartController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <ScatterChart fx:id="scatterChart" alternativeColumnFillVisible="true" animated="true"
+        legendSide="RIGHT" title="SIR Model Results">
+        <xAxis>
+            <NumberAxis label="Time" minorTickVisible="false" tickUnit="1" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Population" minorTickVisible="true" tickUnit="10"/>
+        </yAxis>
+    </ScatterChart>
+</VBox>

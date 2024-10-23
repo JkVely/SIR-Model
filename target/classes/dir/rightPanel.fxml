@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.*?>
+<?import javafx.scene.shape.Line?>
+
+<VBox alignment="TOP_CENTER" spacing="20.0" stylesheets="@styles/rightPanel.css"
+    xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="dir.controller.RightPanelController"
+    styleClass="right-panel">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <Label text="Simulation Parameters" styleClass="section-title" />
+
+    <VBox styleClass="parameter-container">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <FontIcon iconLiteral="fas-virus" iconSize="16" />
+            <Label text="Transmission Rate:" styleClass="parameter-label" />
+        </HBox>
+        <Slider fx:id="transmissionRateSlider" min="0" max="100" value="50" />
+        <Label fx:id="transmissionRateLabel" text="" styleClass="value-label" />
+    </VBox>
+
+    <VBox styleClass="parameter-container">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <FontIcon iconLiteral="fas-heartbeat" iconSize="16" />
+            <Label text="Recovery Rate:" styleClass="parameter-label" />
+        </HBox>
+        <Slider fx:id="recoveryRateSlider" min="0" max="100" value="50" />
+        <Label fx:id="recoveryRateLabel" text="50%" styleClass="value-label" />
+    </VBox>
+
+    <VBox styleClass="parameter-container">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <FontIcon iconLiteral="fas-th" iconSize="16" />
+            <Label text="Grid Size:" styleClass="parameter-label" />
+        </HBox>
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="rowsField" promptText="Rows" styleClass="grid-size-input" />
+            <Label text="x" styleClass="grid-size-label" />
+            <TextField fx:id="colsField" promptText="Columns" styleClass="grid-size-input" />
+        </HBox>
+    </VBox>
+
+    <VBox styleClass="parameter-container">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <FontIcon iconLiteral="fas-user-friends" iconSize="16" />
+            <Label text="Initial Infection:" styleClass="parameter-label" />
+        </HBox>
+        <VBox spacing="10">
+            <RadioButton fx:id="centerInfectionRadio" text="One infected in the center" selected="true" styleClass="infection-option">
+                <toggleGroup>
+                    <ToggleGroup fx:id="infectionTypeGroup" />
+                </toggleGroup>
+            </RadioButton>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <RadioButton fx:id="percentageInfectionRadio" text="Percentage:" toggleGroup="$infectionTypeGroup" styleClass="infection-option" />
+                <TextField fx:id="percentageField" promptText="0.0%" styleClass="infection-value-input" disable="true" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <RadioButton fx:id="numberInfectionRadio" text="Number of infected:" toggleGroup="$infectionTypeGroup" styleClass="infection-option" />
+                <TextField fx:id="numberField" promptText="0" styleClass="infection-value-input" disable="true" />
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <Line startX="0" endX="300" styleClass="separator" />
+
+    <Button onAction="#handleInitializeGrid" styleClass="primary-button">
+        <graphic>
+            <HBox spacing="10" alignment="CENTER">
+                <FontIcon iconLiteral="fas-play" iconSize="16" />
+                <Label text="Initialize Grid" />
+            </HBox>
+        </graphic>
+    </Button>
+
+    <HBox alignment="CENTER" spacing="10.0">
+        <Button onAction="#handleStepAction" styleClass="secondary-button">
+            <graphic>
+                <FontIcon iconLiteral="fas-step-forward" iconSize="14" />
+            </graphic>
+        </Button>
+        <Button onAction="#handleStartAutoAction" styleClass="secondary-button">
+            <graphic>
+                <FontIcon iconLiteral="fas-play-circle" iconSize="14" />
+            </graphic>
+        </Button>
+        <Button onAction="#handleStopAutoAction" styleClass="secondary-button">
+            <graphic>
+                <FontIcon iconLiteral="fas-stop-circle" iconSize="14" />
+            </graphic>
+        </Button>
+    </HBox>
+</VBox>

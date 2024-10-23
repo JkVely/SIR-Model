@@ -1,0 +1,32 @@
+#scatterChart .chart-legend {
+    -fx-padding: 20px;
+    -fx-background-color: rgba(255,255,255,0.5); /* Fondo semi-transparente para el legend */
+}
+
+#scatterChart .chart-legend-item {
+    -fx-padding: 5px 10px;
+}
+
+#scatterChart .chart-legend-item-symbol {
+    -fx-background-radius: 0; /* Hacer los símbolos cuadrados */
+    -fx-background-insets: 0;
+    -fx-background-color: rgb(179, 179, 179);
+    -fx-padding: 5px;
+}
+
+#scatterChart .chart-legend-item-text {
+    -fx-font-size: 14px;
+    -fx-padding: 0 0 0 5px;
+}
+
+.susceptible-symbol {
+    -fx-background-color: #ec4d4d !important;
+}
+
+.infected-symbol {
+    -fx-background-color: #f39c63 !important;
+}
+
+.recovered-symbol {
+    -fx-background-color: #5fe966 !important;
+}

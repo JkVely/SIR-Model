@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="dir.controller.MainMenuController" stylesheets="@styles/mainMenu.css">
+   <VBox alignment="CENTER" spacing="40.0" styleClass="main-container">
+      <HBox alignment="CENTER" spacing="60.0" styleClass="content-container">
+         <VBox alignment="CENTER" styleClass="image-container">
+            <ImageView fx:id="imageView" fitWidth="400.0" preserveRatio="true">
+               <image>
+                  <Image url="https://mattravenhall.github.io/assets/posts/SIRdiagram.png" />
+               </image>
+            </ImageView>
+         </VBox>
+         <VBox alignment="CENTER_LEFT" spacing="20.0" styleClass="info-container">
+            <Label text="SIR Model Simulation" styleClass="title" />
+            <Label text="Epidemiological Analysis Tool" styleClass="subtitle" />
+            <VBox spacing="10.0" styleClass="author-container">
+               <Label text="Author: Juan Carlos Quintero Rubiano" styleClass="author" />
+               <Label text="Student ID: 20232020172" styleClass="author" />
+            </VBox>
+            <Button fx:id="startButton" text="Start Simulation"
+               onAction="#handleStartButtonAction" styleClass="start-button" />
+         </VBox>
+      </HBox>
+   </VBox>
+</StackPane>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.chart.XYChart?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.GridPane?>
+
+<SplitPane fx:id="mainPanel" dividerPositions="0.65" maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0"
+    prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="dir.controller.MainPanelController">
+    <items>
+        <SplitPane fx:id="supPanel" dividerPositions="0.7" prefWidth="800.0">
+            <items>
+                <ScrollPane fx:id="scrollGrid">
+                    <content>
+                        <VBox>
+                            <GridPane fx:id="gridPane"/>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+                <ScrollPane>
+                    <content>
+                        <VBox fx:id="rightPanel"/>
+                    </content>
+                </ScrollPane>
+            </items>
+        </SplitPane>
+        <VBox fx:id="downPanel" prefHeight="350.0" prefWidth="800.0">
+        </VBox>
+    </items>
+</SplitPane>
