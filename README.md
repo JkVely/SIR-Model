@@ -4,24 +4,24 @@
 ![JavaFX](https://img.shields.io/badge/JavaFX-3776AB?style=for-the-badge&logo=java&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)
 
-## Descripción
+## Description
 
-Este proyecto implementa una simulación del modelo epidemiológico **SIR** (Susceptible, Infectado, Recuperado) utilizando **Java** y **JavaFX** para la interfaz gráfica. El objetivo principal es proporcionar una herramienta visual e interactiva para observar cómo diferentes tasas de transmisión y recuperación afectan la propagación de una enfermedad dentro de una población.
+This project implements a simulation of the **SIR** (Susceptible, Infected, Recovered) epidemiological model using **Java** and **JavaFX** for the graphical interface. The main objective is to provide a visual and interactive tool to observe how different transmission and recovery rates affect the spread of a disease within a population.
 
-La simulación permite ajustar parámetros clave como el tamaño de la cuadrícula, la tasa de transmisión y la tasa de recuperación, mostrando en tiempo real el número de individuos susceptibles, infectados y recuperados a lo largo del tiempo mediante gráficos dinámicos.
+The simulation allows adjusting key parameters such as grid size, transmission rate, and recovery rate, showing in real-time the number of susceptible, infected, and recovered individuals over time through dynamic charts.
 
 <p align="center">
   <img alt="SIR Model Simulation" src="https://mattravenhall.github.io/assets/posts/SIRdiagram.png">
 </p>
 
-## Características
+## Features
 
-- **Interfaz Gráfica Intuitiva:** La aplicación utiliza JavaFX para ofrecer una experiencia de usuario amigable y visualmente atractiva.
-- **Configuración Dinámica de Parámetros:** Los usuarios pueden ajustar la tasa de transmisión, la tasa de recuperación y el tamaño de la cuadrícula para ver cómo estos factores influyen en la simulación.
-- **Visualización en Tiempo Real:** Un gráfico dinámico muestra los cambios en el número de individuos susceptibles, infectados y recuperados a medida que avanza la simulación.
-- **Control Completo de la Simulación:** La aplicación permite iniciar, detener y avanzar la simulación paso a paso, brindando un control detallado sobre el proceso.
+- **Intuitive Graphical Interface:** The application uses JavaFX to provide a user-friendly and visually appealing experience.
+- **Dynamic Parameter Configuration:** Users can adjust the transmission rate, recovery rate, and grid size to see how these factors influence the simulation.
+- **Real-Time Visualization:** A dynamic chart displays changes in the number of susceptible, infected, and recovered individuals as the simulation progresses.
+- **Complete Simulation Control:** The application allows starting, stopping, and stepping through the simulation, providing detailed control over the process.
 
-## Estructura del Proyecto
+## Project Structure
 
 ```plaintext
 src/
@@ -29,37 +29,53 @@ src/
 ├── main/
 │   ├── java/
 │   │   └── dir/
-│   │       ├── controller/   # Controladores para manejar la lógica de la interfaz y la simulación
-│   │       ├── model/        # Modelo que define las reglas del modelo SIR
-│   │       └── view/         # Archivos FXML y CSS para la interfaz gráfica
-│   └── resources/            # Archivos de recursos como FXML y hojas de estilo
-└── test/                     # Pruebas unitarias del modelo y controladores
+│   │       ├── controller/   # Controllers to handle the logic of the interface and simulation
+│   │       ├── model/        # Model defining the rules of the SIR model
+│   │       └── view/         # FXML and CSS files for the graphical interface
+│   └── resources/            # Resource files such as FXML and stylesheets
+└── test/                     # Unit tests for the model and controllers
 ```
-## Instalación
-- Clonar el repositorio:
+
+## Installation
+
+- Clone the repository:
 ```bash
 git clone https://github.com/JkVely/SIR-Model.git
 cd SIR-Model-Simulation
 ```
-- Compilar el proyecto:
+- Build the project:
 ```bash
 mvn clean install
 ```
-- Ejecutar la aplicación:
+- Run the application:
 ```bash
 mvn javafx:run
 ```
 
-## Uso
-- Iniciar la Simulación: Haz clic en el botón "Start" en el menú principal.
-- Configurar Parámetros: Ajusta los sliders y campos de texto en el panel derecho para configurar la tasa de transmisión, tasa de recuperación, y tamaño de la cuadrícula.
-- Controlar la Simulación: Utiliza los botones para iniciar, detener y avanzar la simulación paso a paso.
-## Capturas de Pantalla
-Menú Principal
-<img alt="Main Menu" src="https://mattravenhall.github.io/assets/posts/SIRdiagram.png">
-Panel Principal
-<img alt="Main Panel" src="https://mattravenhall.github.io/assets/posts/SIRdiagram.png">
+## Usage
 
-Contacto
-Juan Carlos Quintero - @JkVely - jkquinteror@gmail.com
+- **Start the Simulation:** Click the "Start" button in the main menu.
+- **Configure Parameters:** Adjust the sliders and text fields in the right panel to set the transmission rate, recovery rate, and grid size.
+- **Control the Simulation:** Use the buttons to start, stop, and step through the simulation.
+
+## Screenshots
+
+### Application Main Menu
+<img alt="Application Main Menu" src="https://i.imgur.com/Z6kPHY4.png">
+
+### Simulation Panel (Initial State)
+<img alt="Simulation Panel (Initial State)" src="https://i.imgur.com/XPh6Rsg.png">
+
+### Simulation Panel (Grid Generated)
+<img alt="Simulation Panel (Grid Generated)" src="https://i.imgur.com/05yVCLl.png">
+
+### Simulation Panel (During Simulation)
+<img alt="Simulation Panel (During Simulation)" src="https://i.imgur.com/y4zZdqH.png">
+
+### Simulation Panel (Simulation Completed)
+<img alt="Simulation Panel (Simulation Completed)" src="https://i.imgur.com/gmLMyGc.jpg">
+
+## Contact
+
+Juan Carlos Quintero - [@JkVely](https://github.com/JkVely) - jkquinteror@gmail.com
 
