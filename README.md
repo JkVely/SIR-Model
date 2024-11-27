@@ -41,7 +41,7 @@ src/
 - Clone the repository:
 ```bash
 git clone https://github.com/JkVely/SIR-Model.git
-cd SIR-Model-Simulation
+cd SIR-Model
 ```
 - Build the project:
 ```bash
