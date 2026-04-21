@@ -7,18 +7,29 @@
     -fx-padding: 5px 10px;
 }
 
-#scatterChart .chart-legend-item-symbol {
-    -fx-background-radius: 0; /* Hacer los símbolos cuadrados */
-    -fx-background-insets: 0;
-    -fx-background-color: rgb(179, 179, 179);
-    -fx-padding: 5px;
-}
-
 #scatterChart .chart-legend-item-text {
     -fx-font-size: 14px;
     -fx-padding: 0 0 0 5px;
 }
 
+/* 
+ * By targeting the default-color class and chart-symbol, 
+ * we correctly style BOTH the data points on the plot AND the legend symbols natively,
+ * while keeping their distinct shapes (circles, squares, triangles/diamonds) intact.
+ */
+.default-color0.chart-symbol {
+    -fx-background-color: #ec4d4d;
+}
+
+.default-color1.chart-symbol {
+    -fx-background-color: #f39c63;
+}
+
+.default-color2.chart-symbol {
+    -fx-background-color: #5fe966;
+}
+
+/* Also keeping these just in case the Java code explicitly adds them */
 .susceptible-symbol {
     -fx-background-color: #ec4d4d !important;
 }

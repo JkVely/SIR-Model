@@ -10,6 +10,9 @@ import javafx.scene.shape.Rectangle;
  * based on the state of the cell (SUSCEPTIBLE, INFECTIOUS, or RECOVERED).
  */
 public class CellView extends Rectangle {
+    private static final Color SUSCEPTIBLE_COLOR = Color.web("#ec4d4d");
+    private static final Color INFECTIOUS_COLOR = Color.web("#f39c63");
+    private static final Color RECOVERED_COLOR = Color.web("#5fe966");
 
     /**
      * Constructs a CellView with the specified width, height, and initial state.
