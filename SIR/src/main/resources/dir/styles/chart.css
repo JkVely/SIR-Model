@@ -1,6 +1,6 @@
 #scatterChart .chart-legend {
     -fx-padding: 20px;
-    -fx-background-color: rgba(255,255,255,0.5); /* Fondo semi-transparente para el legend */
+    -fx-background-color: rgba(255,255,255,0.5);
 }
 
 #scatterChart .chart-legend-item {
@@ -12,32 +12,43 @@
     -fx-padding: 0 0 0 5px;
 }
 
-/* 
- * By targeting the default-color class and chart-symbol, 
- * we correctly style BOTH the data points on the plot AND the legend symbols natively,
- * while keeping their distinct shapes (circles, squares, triangles/diamonds) intact.
- */
-.default-color0.chart-symbol {
+/* CONFIGURACIÓN CRÍTICA: Especificidad altísima usando ID (#scatterChart) + Clase. 
+   Garantiza que modena.css no vuelva a ignorarnos y hacer los iconos invisibles */
+#scatterChart .chart-legend-item-symbol {
+    -fx-padding: 5px; /* Define el tamaño mínimo para evitar que desaparezcan */
+}
+
+/* ==== Susceptible (Red Circle) ==== */
+#scatterChart .default-color0.chart-legend-item-symbol {
+    -fx-background-color: #ec4d4d !important;
+    -fx-background-radius: 5px !important; 
+}
+#scatterChart .default-color0.chart-symbol {
     -fx-background-color: #ec4d4d;
 }
 
-.default-color1.chart-symbol {
+/* ==== Infected (Orange Square) ==== */
+#scatterChart .default-color1.chart-legend-item-symbol {
+    -fx-background-color: #f39c63 !important;
+    -fx-background-radius: 0 !important;
+}
+#scatterChart .default-color1.chart-symbol {
     -fx-background-color: #f39c63;
 }
 
-.default-color2.chart-symbol {
+/* ==== Recovered (Green Diamond) ==== */
+#scatterChart .default-color2.chart-legend-item-symbol {
+    -fx-background-color: #5fe966 !important;
+    -fx-background-radius: 0 !important;
+    /* Dibujamos el SVG del Rombo para igualar al Chart */
+    -fx-shape: "M 0 5 L 5 0 L 10 5 L 5 10 Z" !important; 
+    -fx-padding: 6px !important; 
+}
+#scatterChart .default-color2.chart-symbol {
     -fx-background-color: #5fe966;
 }
 
-/* Also keeping these just in case the Java code explicitly adds them */
-.susceptible-symbol {
-    -fx-background-color: #ec4d4d !important;
-}
-
-.infected-symbol {
-    -fx-background-color: #f39c63 !important;
-}
-
-.recovered-symbol {
-    -fx-background-color: #5fe966 !important;
-}
+/* Estilos del controller para los nodos en el gráfico */
+.susceptible-symbol { -fx-background-color: #ec4d4d !important; }
+.infected-symbol { -fx-background-color: #f39c63 !important; }
+.recovered-symbol { -fx-background-color: #5fe966 !important; }

@@ -102,6 +102,26 @@ public class ChartController {
         recoveredData.getNode().getStyleClass().add("recovered-symbol");
 
         timeStep++;
+
+        // Forzar los iconos de la leyenda después de que se grafica el primer punto
+        if (timeStep == 1) {
+            for (javafx.scene.Node legendNode : scatterChart.lookupAll(".chart-legend-item")) {
+                if (legendNode instanceof javafx.scene.control.Label) {
+                    javafx.scene.control.Label legendLabel = (javafx.scene.control.Label) legendNode;
+                    javafx.scene.Node graphic = legendLabel.getGraphic();
+                    if (graphic != null) {
+                        String text = legendLabel.getText();
+                        if ("Susceptible".equals(text)) {
+                            graphic.setStyle("-fx-background-color: #ec4d4d; -fx-background-radius: 5px; -fx-padding: 5px;");
+                        } else if ("Infected".equals(text)) {
+                            graphic.setStyle("-fx-background-color: #f39c63; -fx-background-radius: 0; -fx-padding: 5px;");
+                        } else if ("Recovered".equals(text)) {
+                            graphic.setStyle("-fx-background-color: #5fe966; -fx-background-radius: 0; -fx-padding: 6px; -fx-shape: \"M 0 5 L 5 0 L 10 5 L 5 10 Z\";");
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**

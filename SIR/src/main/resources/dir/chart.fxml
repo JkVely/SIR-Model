@@ -13,9 +13,9 @@
     </padding>
 
     <ScatterChart fx:id="scatterChart" alternativeColumnFillVisible="true" animated="true"
-        legendSide="RIGHT" title="SIR Model Results">
+        legendSide="RIGHT" legendVisible="true" title="SIR Model Results">
         <xAxis>
-            <NumberAxis label="Time" minorTickVisible="false" tickUnit="1" />
+            <NumberAxis label="Time" minorTickVisible="true" tickUnit="1" />
         </xAxis>
         <yAxis>
             <NumberAxis label="Population" minorTickVisible="true" tickUnit="10"/>
